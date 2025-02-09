@@ -1,0 +1,14 @@
+.app_wrapper {
+  background: url('/assets/WAM_bg.jpg');
+  background-size: 100%;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
