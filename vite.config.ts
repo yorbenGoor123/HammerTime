@@ -7,6 +7,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    css: true
+    css: true,
+    exclude: ['e2e', 'node_modules', 'dist', 'build'],
   }
 })

@@ -44,6 +44,7 @@ const gameSlice = createSlice({
         } else {
           state.gameTime = 0;
           state.gameActive = false;
+          state.moles = Array(numberOfHoles).fill(false);
         }
       },
   },
