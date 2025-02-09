@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { numberOfHoles } from "../contants";
 
 export interface GameState {
   score: number;
@@ -10,7 +11,7 @@ export interface GameState {
 
 const initialState: GameState = {
   score: 0,
-  moles: Array(12).fill(false),
+  moles: Array(numberOfHoles).fill(false),
   intervalSpeed: 1500,
   gameTime: 120,
   gameActive: false,

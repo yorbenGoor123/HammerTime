@@ -1,10 +1,10 @@
 import { useCallback, useEffect } from "react";
-import Mole from "./Mole/Mole";
 import styles from "./PlayGround.module.css";
 import { hideMole, spawnMole, tickTimer } from "../../Slices/GameSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Slices/GameStore";
-import MoleContainer from "./Mole/MoleContainer";
+import { numberOfHoles } from "../../contants";
+import Mole from "./Mole/Mole";
 
 const Playground: React.FC = () => {
     const gameActive = useSelector((state: RootState) => state.game.gameActive);
@@ -18,7 +18,7 @@ const Playground: React.FC = () => {
         const moleInterval = setInterval(() => {
             dispatch(spawnMole());
             setTimeout(() => {
-                dispatch(hideMole(Math.floor(Math.random() * 12))); // Assume 12 holes
+                dispatch(hideMole(Math.floor(Math.random() * 12))); // Assume 12 holes :)
             }, 800);
         }, intervalSpeed);
 
@@ -38,8 +38,8 @@ const Playground: React.FC = () => {
 
     return (
         <div className={styles.playground}>
-            {[...Array(12)].map((_, index) => (
-                <MoleContainer key={index} index={index} />
+            {[...Array(numberOfHoles)].map((_, index) => (
+                <Mole key={index} index={index} />
             ))}
         </div>
     );
