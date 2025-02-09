@@ -18,7 +18,7 @@ const Playground: React.FC = () => {
         const moleInterval = setInterval(() => {
             dispatch(spawnMole());
             setTimeout(() => {
-                dispatch(hideMole(Math.floor(Math.random() * 12))); // Assume 12 holes :)
+                dispatch(hideMole(Math.floor(Math.random() * numberOfHoles)));
             }, 800);
         }, intervalSpeed);
 
