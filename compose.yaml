@@ -1,0 +1,6 @@
+﻿services:
+  hammertime.whack.client:
+    image: hammertime.whack.client
+    build:
+      context: .
+      dockerfile: HammerTime.Whack.Client/Dockerfile

@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "/bCCwH9pmtClsWSAgrEYWASy+/uzC4BPx9/mCR735cY=",
+  "Source": "HammerTime.Whack.Server",
+  "BasePath": "_content/HammerTime.Whack.Server",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

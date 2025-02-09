@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\HammerTime.Whack.Server.props" />
+</Project>
