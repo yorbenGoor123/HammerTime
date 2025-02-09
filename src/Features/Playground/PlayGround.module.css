@@ -1,10 +1,10 @@
 .playground {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    grid-template-rows: auto;
     gap: 3rem;
     width: 50%;
     height: 50%;
     padding: 10rem;
-    cursor: url("assets/WAM_Hammer.png") auto;
+    cursor: url("/assets/WAM_Hammer.png") auto;
 }

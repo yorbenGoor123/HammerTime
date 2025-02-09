@@ -6,6 +6,7 @@ import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import gameReducer, { startGame } from "../../Slices/GameSlice";
 import { RootState } from "../../Slices/GameStore";
 import Scoreboard from "./ScoreBoard";
+import { numberOfHoles } from "../../contants";
 
 const rootReducer = combineReducers({
     game: gameReducer,
@@ -68,7 +69,7 @@ describe("Scoreboard Component", () => {
         store = setupStore({
             game: {
                 score: 10,
-                moles: Array(9).fill(false),
+                moles: Array(numberOfHoles).fill(false),
                 intervalSpeed: 1500,
                 gameTime: 30,
                 gameActive: false,
