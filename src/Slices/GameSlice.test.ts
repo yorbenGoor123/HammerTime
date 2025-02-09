@@ -8,7 +8,7 @@ describe("gameSlice", () => {
   beforeEach(() => {
     initialState = {
       score: 0,
-      moles: Array(9).fill(false),
+      moles: Array(12).fill(false),
       intervalSpeed: 1500,
       gameTime: 120,
       gameActive: false,
@@ -19,7 +19,7 @@ describe("gameSlice", () => {
     const newState = gameReducer(initialState, startGame());
     expect(newState).toEqual({
       score: 0,
-      moles: Array(9).fill(false),
+      moles: Array(12).fill(false),
       intervalSpeed: 1500,
       gameTime: 120,
       gameActive: true,

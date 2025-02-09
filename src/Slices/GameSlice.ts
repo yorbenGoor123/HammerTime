@@ -10,7 +10,7 @@ export interface GameState {
 
 const initialState: GameState = {
   score: 0,
-  moles: Array(9).fill(false),
+  moles: Array(12).fill(false),
   intervalSpeed: 1500,
   gameTime: 120,
   gameActive: false,
@@ -21,11 +21,7 @@ const gameSlice = createSlice({
   initialState,
   reducers: {
     startGame: (state) => {
-      state.score = 0;
-      state.gameTime = 120;
-      state.intervalSpeed = 1500;
-      state.gameActive = true;
-      state.moles = Array(9).fill(false);
+      state.gameActive = true
     },
     whackMole: (state, action: PayloadAction<number>) => {
       if (state.moles[action.payload]) {

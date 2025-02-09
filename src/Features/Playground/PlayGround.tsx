@@ -1,23 +1,24 @@
-import { useEffect } from 'react';
-import Mole from './Mole/Mole';
-import styles from './PlayGround.module.css'
-import { hideMole, spawnMole, tickTimer } from '../../Slices/GameSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../Slices/GameStore';
-import { v4 as uuidv4 } from 'uuid';
+import { useCallback, useEffect } from "react";
+import Mole from "./Mole/Mole";
+import styles from "./PlayGround.module.css";
+import { hideMole, spawnMole, tickTimer } from "../../Slices/GameSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../Slices/GameStore";
+import MoleContainer from "./Mole/MoleContainer";
 
 const Playground: React.FC = () => {
+    const gameActive = useSelector((state: RootState) => state.game.gameActive);
+    const intervalSpeed = useSelector((state: RootState) => state.game.intervalSpeed);
 
-    const { moles, gameActive, intervalSpeed } = useSelector((state: RootState) => state.game);
     const dispatch = useDispatch();
 
-    useEffect(() => {
+    const startGameLoop = useCallback(() => {
         if (!gameActive) return;
 
         const moleInterval = setInterval(() => {
             dispatch(spawnMole());
             setTimeout(() => {
-                dispatch(hideMole(Math.floor(Math.random() * moles.length)));
+                dispatch(hideMole(Math.floor(Math.random() * 12))); // Assume 12 holes
             }, 800);
         }, intervalSpeed);
 
@@ -29,13 +30,16 @@ const Playground: React.FC = () => {
             clearInterval(moleInterval);
             clearInterval(gameTimer);
         };
-    }, [gameActive, dispatch, intervalSpeed, moles.length]);
+    }, [gameActive, dispatch, intervalSpeed]);
 
+    useEffect(() => {
+        return startGameLoop();
+    }, [startGameLoop]);
 
     return (
         <div className={styles.playground}>
-            {moles.map((isUp: boolean, index: number) => (
-                <Mole index={index} key={uuidv4()} readyToBeWacked={isUp} />
+            {[...Array(12)].map((_, index) => (
+                <MoleContainer key={index} index={index} />
             ))}
         </div>
     );

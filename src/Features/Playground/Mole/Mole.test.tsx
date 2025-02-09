@@ -10,13 +10,14 @@ import { RootState } from "../../../Slices/GameStore";
 
 const rootReducer = combineReducers({
     game: gameReducer
-  })
-  export function setupStore(preloadedState?: Partial<RootState>) {
+});
+
+export function setupStore(preloadedState?: Partial<RootState>) {
     return configureStore({
-      reducer: rootReducer,
-      preloadedState
+        reducer: rootReducer,
+        preloadedState
     })
-  }
+}
 
 describe("Mole Component", () => {
     let store: any
