@@ -15,6 +15,10 @@ test.describe('Whack-a-Mole Game', () => {
         // Verify the title
         await expect(page).toHaveTitle(/It's Hammertime!/);
 
+        const nameInput = page.locator('input[name="name"]');
+        await expect(nameInput).toBeVisible();
+        await nameInput.fill('TestPlayer');
+
         // Ensure the start button is visible and click it
         const startButton = page.getByRole('button', { name: 'Start Game' });
         await expect(startButton).toBeVisible();
@@ -23,7 +27,7 @@ test.describe('Whack-a-Mole Game', () => {
         // Allow game logic to process
         await page.waitForTimeout(3000); // Let the game loop run
 
-        const activeMoles = await page.locator('[data-testid="mole"]').filter({ hasText: /Whack me!/ }).all();
+        const activeMoles = await page.locator('[data-testid="up"]').all();
         if (activeMoles.length > 0) {
             const randomMole = activeMoles[Math.floor(Math.random() * activeMoles.length)];
             await randomMole.click();

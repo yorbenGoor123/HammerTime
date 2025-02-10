@@ -29,6 +29,7 @@ describe("Scoreboard Component", () => {
                 intervalSpeed: 1500,
                 gameTime: 60,
                 gameActive: false,
+                playerName: "Player 1",
             },
         });
         store.dispatch = vi.fn(); // Mock dispatch function

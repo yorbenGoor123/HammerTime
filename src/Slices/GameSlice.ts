@@ -27,7 +27,7 @@ const gameSlice = createSlice({
       state.gameActive = true;
       state.score = 0;
       state.intervalSpeed = 1500;
-      state.gameTime = 10;
+      state.gameTime = 120;
       state.playerName = action.payload; // ✅ PlayerName correct instellen
       state.moles = Array(numberOfHoles).fill(false); // ✅ Moles opnieuw initialiseren
     },

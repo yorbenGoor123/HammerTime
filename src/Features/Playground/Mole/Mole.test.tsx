@@ -30,6 +30,7 @@ describe("Mole Component", () => {
                 intervalSpeed: 1500,
                 gameTime: 60,
                 gameActive: true,
+                playerName: "Player 1",
             },
         });
         store.dispatch = vi.fn();

@@ -71,7 +71,13 @@ const Leaderboard: React.FC = () => {
                   .map((player: Player, index: number) => (
                     <tr key={index}>
                       <td>{index + 1}</td>
-                      <td>{player.name}</td>
+                      <td
+                        className={
+                          playerName === player.name ? styles.greenText : ""
+                        }
+                      >
+                        {player.name}
+                      </td>
                       <td>{player.score}</td>
                     </tr>
                   ))}

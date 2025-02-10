@@ -1,3 +1,4 @@
+import { numberOfHoles } from "../contants";
 import gameReducer, { startGame, whackMole, spawnMole, hideMole, tickTimer } from "./GameSlice";
 import { GameState } from "./GameSlice"; // Import type
 import { describe, it, expect, beforeEach } from 'vitest';
@@ -12,17 +13,19 @@ describe("gameSlice", () => {
       intervalSpeed: 1500,
       gameTime: 120,
       gameActive: false,
+      playerName: "player 1"
     };
   });
 
   it("should handle startGame", () => {
-    const newState = gameReducer(initialState, startGame());
+    const newState = gameReducer(initialState, startGame("player 1"));
     expect(newState).toEqual({
       score: 0,
-      moles: Array(12).fill(false),
+      moles: Array(numberOfHoles).fill(false),
       intervalSpeed: 1500,
       gameTime: 120,
       gameActive: true,
+      playerName: "player 1",
     });
   });
 

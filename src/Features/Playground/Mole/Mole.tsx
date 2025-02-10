@@ -15,14 +15,13 @@ const Mole: React.FC<Props> = memo(({ index }) => {
 
   return (
     <div
-      data-testid="mole"
+      data-testid={`${isUp ? "up" : "down"}`}
       onClick={() => isUp && dispatch(whackMole(index))}
       className={classNames(
         styles.mole,
         isUp ? styles.ready_to_wack : styles.sneaky
       )}
-    >
-    </div>
+    ></div>
   );
 });
 
