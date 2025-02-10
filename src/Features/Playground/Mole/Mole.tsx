@@ -22,7 +22,6 @@ const Mole: React.FC<Props> = memo(({ index }) => {
         isUp ? styles.ready_to_wack : styles.sneaky
       )}
     >
-      {isUp && "Whack me!"}
     </div>
   );
 });

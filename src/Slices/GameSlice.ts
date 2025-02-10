@@ -22,7 +22,11 @@ const gameSlice = createSlice({
   initialState,
   reducers: {
     startGame: (state) => {
-      state.gameActive = true
+      state.gameActive = true,
+      state.score = 0,
+      state.intervalSpeed = 1500,
+      state.gameTime = 10,
+      Array(numberOfHoles).fill(false)
     },
     whackMole: (state, action: PayloadAction<number>) => {
       if (state.moles[action.payload]) {

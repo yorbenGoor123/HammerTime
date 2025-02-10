@@ -1,27 +1,24 @@
-  import React from "react";
-  import { useSelector, useDispatch } from "react-redux";
-  import { startGame } from "../../Slices/GameSlice";
-  import { RootState } from "../../Slices/GameStore";
+import { useSelector } from "react-redux";
+import { RootState } from "../../Slices/GameStore";
+import styles from './ScoreBoard.module.css'
 
-  const Scoreboard: React.FC = () => {
-    const { score, gameTime, gameActive } = useSelector((state: RootState) => state.game);
-    const dispatch = useDispatch();
+const Scoreboard: React.FC = () => {
+  const { score, gameTime } = useSelector((state: RootState) => state.game);
 
-    return (
-      <div className="flex flex-col items-center space-y-4">
-        <h1 className="text-2xl font-bold">Whack-a-Mole</h1>
-        <p className="text-xl">Score: {score}</p>
-        <p className="text-xl">Time Left: {gameTime}s</p>
-        {!gameActive && (
-          <button
-            className="bg-blue-500 text-white px-4 py-2 rounded-md"
-            onClick={() => dispatch(startGame())}
-          >
-            Start Game
-          </button>
-        )}
-      </div>
-    );
-  };
+  return (
+    <div className={styles.scoreboard}>
+      <p className="text-2xl font-bold">
+        Score: <span className="text-yellow-400">{score}</span>
+      </p>
+      <p
+        className={`text-xl font-semibold ${
+          gameTime <= 60 ? "text-red-500 animate-pulse" : "text-green-400"
+        }`}
+      >
+        Time Left: {gameTime}s
+      </p>
+    </div>
+  );
+};
 
-  export default Scoreboard;
+export default Scoreboard;

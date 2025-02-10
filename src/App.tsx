@@ -5,10 +5,12 @@ import Playground from "./Features/Playground/PlayGround";
 import { store } from "./Slices/GameStore";
 import Scoreboard from "./Features/ScoreBoard/ScoreBoard";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-
-const queryClient = new QueryClient();
+import { useState } from "react";
 
 function App() {
+  
+  const [queryClient] = useState(() => new QueryClient())
+
   return (
     <div className="app_wrapper">
       <QueryClientProvider client={queryClient}>
