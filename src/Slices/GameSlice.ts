@@ -7,6 +7,7 @@ export interface GameState {
   intervalSpeed: number;
   gameTime: number;
   gameActive: boolean;
+  playerName: string;
 }
 
 const initialState: GameState = {
@@ -15,18 +16,20 @@ const initialState: GameState = {
   intervalSpeed: 1500,
   gameTime: 120,
   gameActive: false,
+  playerName: "",
 };
 
 const gameSlice = createSlice({
   name: "game",
   initialState,
   reducers: {
-    startGame: (state) => {
-      state.gameActive = true,
-      state.score = 0,
-      state.intervalSpeed = 1500,
-      state.gameTime = 10,
-      Array(numberOfHoles).fill(false)
+    startGame: (state, action: PayloadAction<string>) => {
+      state.gameActive = true;
+      state.score = 0;
+      state.intervalSpeed = 1500;
+      state.gameTime = 10;
+      state.playerName = action.payload; // ✅ PlayerName correct instellen
+      state.moles = Array(numberOfHoles).fill(false); // ✅ Moles opnieuw initialiseren
     },
     whackMole: (state, action: PayloadAction<number>) => {
       if (state.moles[action.payload]) {
