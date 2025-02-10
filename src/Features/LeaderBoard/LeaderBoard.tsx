@@ -16,6 +16,29 @@ const Leaderboard: React.FC = () => {
     ]);
 
     useEffect(() => {
+        const fetchPosts = async () => {
+          try {
+            const apiUrl = import.meta.env.VITE_API_URL;
+            
+            const response = await fetch(`${apiUrl}/posts`);
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log(data)
+            
+          } catch (err) {
+            console.log(err)
+            
+          } finally {
+            
+          }
+        };
+    
+        fetchPosts();
+      }, []);
+
+    useEffect(() => {
         const sortedPlayers = [...players].sort((a, b) => b.score - a.score);
         setPlayers(sortedPlayers);
     }, [])
