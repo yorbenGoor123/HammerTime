@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Slices/GameStore";
 import { startGame } from "../../Slices/GameSlice";
 import { useEffect } from "react";
-import { useForm } from "react-hook-form";
 import {
   addUpdatePlayer,
   fetchLeaderboard,
@@ -12,9 +11,10 @@ import {
 } from "../../Requests/leaderboard-requests";
 import Form from "../../Components/Form";
 import TextInput from "../../Components/TextInput";
+import { Spin } from "antd";
 
 const Leaderboard: React.FC = () => {
-  const { data } = useQuery({
+  const { data, isFetching } = useQuery({
     queryKey: ["leaderboard"],
     queryFn: fetchLeaderboard,
     staleTime: 300000,
@@ -65,22 +65,26 @@ const Leaderboard: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {data
-                  ?.slice()
-                  .sort((a: Player, b: Player) => b.score - a.score)
-                  .map((player: Player, index: number) => (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td
-                        className={
-                          playerName === player.name ? styles.greenText : ""
-                        }
-                      >
-                        {player.name}
-                      </td>
-                      <td>{player.score}</td>
-                    </tr>
-                  ))}
+                {isFetching ? (
+                  <Spin />
+                ) : (
+                  data
+                    ?.slice()
+                    .sort((a: Player, b: Player) => b.score - a.score)
+                    .map((player: Player, index: number) => (
+                      <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td
+                          className={
+                            playerName === player.name ? styles.greenText : ""
+                          }
+                        >
+                          {player.name}
+                        </td>
+                        <td>{player.score}</td>
+                      </tr>
+                    ))
+                )}
               </tbody>
             </table>
             <button
