@@ -19,8 +19,8 @@ const Leaderboard: React.FC = () => {
         const fetchPosts = async () => {
           try {
             const apiUrl = import.meta.env.VITE_API_URL;
-            
-            const response = await fetch(`${apiUrl}/posts`);
+
+            const response = await fetch(`${apiUrl}/leaderboard`);
             if (!response.ok) {
               throw new Error(`HTTP error! Status: ${response.status}`);
             }
