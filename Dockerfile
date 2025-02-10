@@ -1,7 +1,7 @@
 FROM node as vite-app
 
 
-# Set environment variables during the build process
+# Set environment variables during the build process, just to make it easier to build locally for you guys
 ENV VITE_URL=https://political-mire-enquiry.glitch.me
 
 WORKDIR /app

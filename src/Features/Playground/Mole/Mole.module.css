@@ -2,6 +2,10 @@
     background: url('/assets/WAM_Hole.png');
 }
 
+.whack {
+    background: url('/assets/WAM_Hammer.png');
+}
+
 .ready_to_wack {
     background: url('/assets/WAM_Mole.png');
     cursor: pointer;

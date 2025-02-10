@@ -2,7 +2,7 @@ import classNames from "classnames";
 import styles from "./Mole.module.css";
 import { whackMole } from "../../../Slices/GameSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { memo } from "react";
+import { memo, useState } from "react";
 import { RootState } from "../../../Slices/GameStore";
 
 interface Props {
@@ -10,16 +10,28 @@ interface Props {
 }
 
 const Mole: React.FC<Props> = memo(({ index }) => {
+  const [whacked, setWhacked] = useState(false);
   const dispatch = useDispatch();
   const isUp = useSelector((state: RootState) => state.game.moles[index]);
+
+  const handleWhack = () => {
+    dispatch(whackMole(index));
+    setWhacked(true);
+  };
+
+  const handleMouseUp = () => {
+    setWhacked(false);
+  };
 
   return (
     <div
       data-testid={`${isUp ? "up" : "down"}`}
-      onClick={() => isUp && dispatch(whackMole(index))}
+      onMouseDown={handleWhack}
+      onMouseUp={handleMouseUp}
       className={classNames(
         styles.mole,
-        isUp ? styles.ready_to_wack : styles.sneaky
+        isUp ? styles.ready_to_wack : styles.sneaky,
+        whacked && styles.whack
       )}
     ></div>
   );
