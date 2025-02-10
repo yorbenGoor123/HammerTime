@@ -1,6 +1,9 @@
 ﻿services:
   hammertime.whack.client:
     image: hammertime.whack.client
+    container_name: client
     build:
-      context: .
-      dockerfile: HammerTime.Whack.Client/Dockerfile
+      context: ./HammerTime.Whack.Client
+      dockerfile: Dockerfile
+    ports:
+      - 3000:80

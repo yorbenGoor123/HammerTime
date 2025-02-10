@@ -1,21 +1,28 @@
-FROM node as vite-app
+# frontend/Dockerfile
+FROM node:alpine AS prod
 
 WORKDIR /app
-COPY . .
 
-RUN ["npm", "i"]
-RUN ["npm", "run", "build"]
+COPY package.json /app
+
+RUN npm install
+
+COPY . /app
+
+RUN npm run build
 
 FROM nginx:alpine
 
-WORKDIR /usr/share/nginx/
+WORKDIR /usr/local/bin
 
-RUN rm -rf html
-RUN mkdir html
+COPY --from=prod /app/dist /usr/share/nginx/html
 
-WORKDIR /
+COPY generate-config.sh .
 
-COPY ./nginx.conf /etc/nginx
-COPY --from=vite-app ./app/dist /usr/share/nginx/html
+COPY ./custom-nginx.template /etc/nginx/conf.d/
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+RUN chmod +x generate-config.sh
+
+EXPOSE 80
+
+ENTRYPOINT [ "/bin/sh", "generate-config.sh"]

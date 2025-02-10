@@ -1,0 +1,15 @@
+services:
+  - name: hammertime-whack-client
+    runtime: docker
+    type: web
+    repo: https://github.com/YOUR_GITHUB_REPO
+    branch: main
+    plan: free
+    envVars:
+      - key: NODE_ENV
+        value: production
+    dockerfilePath: HammerTime.Whack.Client/Dockerfile
+    rootDir: HammerTime.Whack.Client
+    region: oregon  # Pas aan naar de gewenste regio
+    healthCheckPath: /
+    autoDeploy: true

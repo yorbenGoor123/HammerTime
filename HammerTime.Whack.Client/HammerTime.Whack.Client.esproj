@@ -13,5 +13,18 @@
       <DependentUpon>Dockerfile</DependentUpon>
       <Link>.dockerignore</Link>
     </None>
+    <None Update="nginx.conf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="generate-config.sh" />
+    <GlobalAnalyzerConfigFiles Include="generate-config.sh">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </GlobalAnalyzerConfigFiles>
+    <None Remove="custom-nginx.template" />
+    <GlobalAnalyzerConfigFiles Include="custom-nginx.template">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </GlobalAnalyzerConfigFiles>
   </ItemGroup>
 </Project>
