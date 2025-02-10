@@ -37,7 +37,7 @@ const Playground: React.FC = () => {
     }, [startGameLoop]);
 
     return (
-        <div className={styles.playground}>
+        <div role="playground" className={styles.playground}>
             {[...Array(numberOfHoles)].map((_, index) => (
                 <Mole key={index} index={index} />
             ))}

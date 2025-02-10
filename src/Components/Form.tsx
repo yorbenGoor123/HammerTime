@@ -19,7 +19,6 @@ const Form = <T extends FieldValues = any>({onSubmit, defaultValues, formId, ...
       <form
         id={formId}
         onSubmit={methods.handleSubmit(data => {
-          console.log(data)
           onSubmit(data);
         })}
         {...otherProps}

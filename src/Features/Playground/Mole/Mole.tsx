@@ -24,16 +24,18 @@ const Mole: React.FC<Props> = memo(({ index }) => {
   };
 
   return (
-    <div
-      data-testid={`${isUp ? "up" : "down"}`}
-      onMouseDown={handleWhack}
-      onMouseUp={handleMouseUp}
-      className={classNames(
-        styles.mole,
-        isUp ? styles.ready_to_wack : styles.sneaky,
-        whacked && styles.whack
-      )}
-    ></div>
+    <div data-testid="mole" role="mole">
+      <div
+        data-testid={`${isUp ? "up" : "down"}`}
+        onMouseDown={handleWhack}
+        onMouseUp={handleMouseUp}
+        className={classNames(
+          styles.mole,
+          isUp ? styles.ready_to_wack : styles.sneaky,
+          whacked && styles.whack
+        )}
+      ></div>
+    </div>
   );
 });
 

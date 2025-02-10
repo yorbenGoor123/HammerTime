@@ -11,10 +11,9 @@ import {
 } from "../../Requests/leaderboard-requests";
 import Form from "../../Components/Form";
 import TextInput from "../../Components/TextInput";
-import { Spin } from "antd";
 
 const Leaderboard: React.FC = () => {
-  const { data, isFetching } = useQuery({
+  const { data } = useQuery({
     queryKey: ["leaderboard"],
     queryFn: fetchLeaderboard,
     staleTime: 300000,
@@ -35,7 +34,6 @@ const Leaderboard: React.FC = () => {
 
   useEffect(() => {
     const updatePlayer = async () => {
-      console.log(playerName);
       if (!gameActive && playerName) {
         await mutation.mutateAsync({ name: playerName, score });
       }
@@ -55,7 +53,7 @@ const Leaderboard: React.FC = () => {
               dispatch(startGame(data.name));
             }}
           >
-            <TextInput label="You will play ass:" required name="name" />
+            <TextInput label="You will play as:" required name="name" />
             <table>
               <thead>
                 <tr>
@@ -65,26 +63,22 @@ const Leaderboard: React.FC = () => {
                 </tr>
               </thead>
               <tbody>
-                {isFetching ? (
-                  <Spin />
-                ) : (
-                  data
-                    ?.slice()
-                    .sort((a: Player, b: Player) => b.score - a.score)
-                    .map((player: Player, index: number) => (
-                      <tr key={index}>
-                        <td>{index + 1}</td>
-                        <td
-                          className={
-                            playerName === player.name ? styles.greenText : ""
-                          }
-                        >
-                          {player.name}
-                        </td>
-                        <td>{player.score}</td>
-                      </tr>
-                    ))
-                )}
+                {data
+                  ?.slice()
+                  .sort((a: Player, b: Player) => b.score - a.score)
+                  .map((player: Player, index: number) => (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td
+                        className={
+                          playerName === player.name ? styles.greenText : ""
+                        }
+                      >
+                        {player.name}
+                      </td>
+                      <td>{player.score}</td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
             <button

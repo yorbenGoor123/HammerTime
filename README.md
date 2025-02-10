@@ -29,3 +29,9 @@ docker run -p 8080:8080 hammertime
 Hammertime is continuously deployed so you always get the freshest, bug-smashiest version. We even have workflows running E2E tests, so if anything breaks, we know before you do (hopefully). 🕵️‍♂️💻
 
 I really enjoyed this little project a lot. Hopefully you do aswell.
+
+🤖 Tests!
+npm run test
+for e2e 
+npx playwright install
+npx playwright test
