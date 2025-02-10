@@ -35,3 +35,6 @@ npm run test
 for e2e 
 npx playwright install
 npx playwright test
+
+Continuous deployment:
+![alt text](image.png)
